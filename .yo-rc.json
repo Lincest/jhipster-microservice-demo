@@ -1,0 +1,34 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.roccoshi.micro"
+    },
+    "jhipsterVersion": "5.8.2",
+    "applicationType": "microservice",
+    "baseName": "MicroName",
+    "packageName": "com.roccoshi.micro",
+    "packageFolder": "com/roccoshi/micro",
+    "serverPort": "7999",
+    "authenticationType": "jwt",
+    "cacheProvider": "no",
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "consul",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "YzFkYzcwYjRlZDA5ZDA0NmE0MzY3ZmUyYTUwMzVlMTY2NmQ2NjE0ZDc4ZTc2ZmJhMjczYzM1ZDg3NzZiYzMwZTAxMmYyMGViZjY1YzI4ZmQyMTRmZDEyMmZiMTRhY2E3Yjg4YzcxZjZmMDZkZDA5Yzg4NDRiYTk4OTE0NWIwNDA=",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "clientPackageManager": "npm",
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}
