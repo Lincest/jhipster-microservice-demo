@@ -11,7 +11,13 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {})
 public interface BusinessMapper extends EntityMapper<BusinessDTO, Business> {
 
+    @Mapping(source="name", target="userName")
+    @Mapping(source="time", target="createTime")
+    public BusinessDTO toDto(Business b);
 
+    @Mapping(source="userName", target="name")
+    @Mapping(source="createTime", target="time")
+    public Business toEntity(BusinessDTO b);
 
     default Business fromId(Long id) {
         if (id == null) {

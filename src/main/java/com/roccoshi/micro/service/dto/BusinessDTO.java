@@ -13,9 +13,9 @@ public class BusinessDTO implements Serializable {
     private Long id;
 
     @Size(max = 255)
-    private String name;
+    private String userName;
 
-    private LocalDate time;
+    private LocalDate createTime;
 
     private String uuid;
 
@@ -31,20 +31,20 @@ public class BusinessDTO implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public LocalDate getTime() {
-        return time;
+    public LocalDate getCreateTime() {
+        return createTime;
     }
 
-    public void setTime(LocalDate time) {
-        this.time = time;
+    public void setCreateTime(LocalDate createTime) {
+        this.createTime = createTime;
     }
 
     public String getUuid() {
@@ -88,8 +88,8 @@ public class BusinessDTO implements Serializable {
     public String toString() {
         return "BusinessDTO{" +
             "id=" + getId() +
-            ", name='" + getName() + "'" +
-            ", time='" + getTime() + "'" +
+            ", name='" + getUserName() + "'" +
+            ", time='" + getCreateTime() + "'" +
             ", uuid='" + getUuid() + "'" +
             ", rawJson='" + getRawJson() + "'" +
             "}";
