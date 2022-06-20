@@ -21,6 +21,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class SseResource {
 
     private final Logger log = LoggerFactory.getLogger(SseResource.class);
+    // save all sse connections
     private static final Map<String, SseEmitter> sseCache = new ConcurrentHashMap<>();
 
     /**
@@ -29,7 +30,7 @@ public class SseResource {
     @GetMapping("/notification/subscribe")
     private SseEmitter push(@RequestParam String id) {
         // set time out
-        SseEmitter sseEmitter = new SseEmitter(3600_000L);
+        SseEmitter sseEmitter = new SseEmitter(3600_000L); // 1h timeout
         sseCache.put(id, sseEmitter);
         sseEmitter.onTimeout(() -> sseCache.remove(id));
         sseEmitter.onCompletion(() -> System.out.println("complete"));
@@ -46,7 +47,9 @@ public class SseResource {
     public void test(String id) throws IOException, InterruptedException {
         for (int i = 0; i < 10; ++i) {
             Thread.sleep(1000);
-            push(id, "hello" + i);
+            String message = "hello" + i;
+            push(id, message);
+            log.info("now we send {}", message);
         }
         over(id);
     }

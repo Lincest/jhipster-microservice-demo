@@ -1,0 +1,10 @@
+@filter
+@paginate(pagination)
+@service(serviceClass)
+@dto(mapstruct)
+entity Business {
+	name String maxlength(255)
+	time LocalDate
+    uuid String
+    rawJson TextBlob
+}
