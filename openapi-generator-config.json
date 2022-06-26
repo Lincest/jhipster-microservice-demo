@@ -1,0 +1,7 @@
+{
+    "library": "feign",
+    "withXml": true,
+    "dateLibrary": "java8",
+    "generateApiTests": false,
+    "generateModelTests": false
+}
