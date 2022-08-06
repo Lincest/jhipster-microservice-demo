@@ -95,6 +95,12 @@ public class PortQueryService extends QueryService<Port> {
             if (criteria.getInfo() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getInfo(), Port_.info));
             }
+            if (criteria.getChassisName() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getChassisName(), Port_.chassisName));
+            }
+            if (criteria.getLineCardName() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getLineCardName(), Port_.lineCardName));
+            }
             if (criteria.getLineCardId() != null) {
                 specification = specification.and(buildSpecification(criteria.getLineCardId(),
                     root -> root.join(Port_.lineCard, JoinType.LEFT).get(LineCard_.id)));

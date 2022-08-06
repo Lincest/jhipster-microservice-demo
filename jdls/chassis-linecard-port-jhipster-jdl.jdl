@@ -11,18 +11,19 @@ entity LineCard {
 entity Port {
 	name String
     info String
+    chassisName String
+   	lineCardName String
 }
 
 service * with serviceClass
 dto * with mapstruct
-filter * 
+filter *
 paginate * with pagination
 
 relationship OneToMany {
-	Chassis to LineCard
+	Chassis{lineCard} to LineCard{chassis}
 }
 
 relationship OneToMany {
-	LineCard to Port
+	LineCard{port} to Port{lineCard}
 }
-

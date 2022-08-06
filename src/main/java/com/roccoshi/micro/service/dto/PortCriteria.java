@@ -28,6 +28,10 @@ public class PortCriteria implements Serializable {
 
     private StringFilter info;
 
+    private StringFilter chassisName;
+
+    private StringFilter lineCardName;
+
     private LongFilter lineCardId;
 
     public LongFilter getId() {
@@ -54,6 +58,22 @@ public class PortCriteria implements Serializable {
         this.info = info;
     }
 
+    public StringFilter getChassisName() {
+        return chassisName;
+    }
+
+    public void setChassisName(StringFilter chassisName) {
+        this.chassisName = chassisName;
+    }
+
+    public StringFilter getLineCardName() {
+        return lineCardName;
+    }
+
+    public void setLineCardName(StringFilter lineCardName) {
+        this.lineCardName = lineCardName;
+    }
+
     public LongFilter getLineCardId() {
         return lineCardId;
     }
@@ -76,6 +96,8 @@ public class PortCriteria implements Serializable {
             Objects.equals(id, that.id) &&
             Objects.equals(name, that.name) &&
             Objects.equals(info, that.info) &&
+            Objects.equals(chassisName, that.chassisName) &&
+            Objects.equals(lineCardName, that.lineCardName) &&
             Objects.equals(lineCardId, that.lineCardId);
     }
 
@@ -85,6 +107,8 @@ public class PortCriteria implements Serializable {
         id,
         name,
         info,
+        chassisName,
+        lineCardName,
         lineCardId
         );
     }
@@ -95,6 +119,8 @@ public class PortCriteria implements Serializable {
                 (id != null ? "id=" + id + ", " : "") +
                 (name != null ? "name=" + name + ", " : "") +
                 (info != null ? "info=" + info + ", " : "") +
+                (chassisName != null ? "chassisName=" + chassisName + ", " : "") +
+                (lineCardName != null ? "lineCardName=" + lineCardName + ", " : "") +
                 (lineCardId != null ? "lineCardId=" + lineCardId + ", " : "") +
             "}";
     }

@@ -27,6 +27,12 @@ public class Port implements Serializable {
     @Column(name = "info")
     private String info;
 
+    @Column(name = "chassis_name")
+    private String chassisName;
+
+    @Column(name = "line_card_name")
+    private String lineCardName;
+
     @ManyToOne
     @JsonIgnoreProperties("ports")
     private LineCard lineCard;
@@ -64,6 +70,32 @@ public class Port implements Serializable {
 
     public void setInfo(String info) {
         this.info = info;
+    }
+
+    public String getChassisName() {
+        return chassisName;
+    }
+
+    public Port chassisName(String chassisName) {
+        this.chassisName = chassisName;
+        return this;
+    }
+
+    public void setChassisName(String chassisName) {
+        this.chassisName = chassisName;
+    }
+
+    public String getLineCardName() {
+        return lineCardName;
+    }
+
+    public Port lineCardName(String lineCardName) {
+        this.lineCardName = lineCardName;
+        return this;
+    }
+
+    public void setLineCardName(String lineCardName) {
+        this.lineCardName = lineCardName;
     }
 
     public LineCard getLineCard() {
@@ -106,6 +138,8 @@ public class Port implements Serializable {
             "id=" + getId() +
             ", name='" + getName() + "'" +
             ", info='" + getInfo() + "'" +
+            ", chassisName='" + getChassisName() + "'" +
+            ", lineCardName='" + getLineCardName() + "'" +
             "}";
     }
 }

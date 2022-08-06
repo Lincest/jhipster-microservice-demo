@@ -8,6 +8,14 @@
         {
             "fieldName": "info",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "chassisName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "lineCardName",
+            "fieldType": "String"
         }
     ],
     "relationships": [

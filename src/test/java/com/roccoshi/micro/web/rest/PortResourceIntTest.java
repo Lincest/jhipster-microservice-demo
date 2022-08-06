@@ -52,6 +52,12 @@ public class PortResourceIntTest {
     private static final String DEFAULT_INFO = "AAAAAAAAAA";
     private static final String UPDATED_INFO = "BBBBBBBBBB";
 
+    private static final String DEFAULT_CHASSIS_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_CHASSIS_NAME = "BBBBBBBBBB";
+
+    private static final String DEFAULT_LINE_CARD_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_LINE_CARD_NAME = "BBBBBBBBBB";
+
     @Autowired
     private PortRepository portRepository;
 
@@ -104,7 +110,9 @@ public class PortResourceIntTest {
     public static Port createEntity(EntityManager em) {
         Port port = new Port()
             .name(DEFAULT_NAME)
-            .info(DEFAULT_INFO);
+            .info(DEFAULT_INFO)
+            .chassisName(DEFAULT_CHASSIS_NAME)
+            .lineCardName(DEFAULT_LINE_CARD_NAME);
         return port;
     }
 
@@ -131,6 +139,8 @@ public class PortResourceIntTest {
         Port testPort = portList.get(portList.size() - 1);
         assertThat(testPort.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testPort.getInfo()).isEqualTo(DEFAULT_INFO);
+        assertThat(testPort.getChassisName()).isEqualTo(DEFAULT_CHASSIS_NAME);
+        assertThat(testPort.getLineCardName()).isEqualTo(DEFAULT_LINE_CARD_NAME);
     }
 
     @Test
@@ -165,7 +175,9 @@ public class PortResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(port.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
-            .andExpect(jsonPath("$.[*].info").value(hasItem(DEFAULT_INFO.toString())));
+            .andExpect(jsonPath("$.[*].info").value(hasItem(DEFAULT_INFO.toString())))
+            .andExpect(jsonPath("$.[*].chassisName").value(hasItem(DEFAULT_CHASSIS_NAME.toString())))
+            .andExpect(jsonPath("$.[*].lineCardName").value(hasItem(DEFAULT_LINE_CARD_NAME.toString())));
     }
     
     @Test
@@ -180,7 +192,9 @@ public class PortResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(port.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
-            .andExpect(jsonPath("$.info").value(DEFAULT_INFO.toString()));
+            .andExpect(jsonPath("$.info").value(DEFAULT_INFO.toString()))
+            .andExpect(jsonPath("$.chassisName").value(DEFAULT_CHASSIS_NAME.toString()))
+            .andExpect(jsonPath("$.lineCardName").value(DEFAULT_LINE_CARD_NAME.toString()));
     }
 
     @Test
@@ -263,6 +277,84 @@ public class PortResourceIntTest {
 
     @Test
     @Transactional
+    public void getAllPortsByChassisNameIsEqualToSomething() throws Exception {
+        // Initialize the database
+        portRepository.saveAndFlush(port);
+
+        // Get all the portList where chassisName equals to DEFAULT_CHASSIS_NAME
+        defaultPortShouldBeFound("chassisName.equals=" + DEFAULT_CHASSIS_NAME);
+
+        // Get all the portList where chassisName equals to UPDATED_CHASSIS_NAME
+        defaultPortShouldNotBeFound("chassisName.equals=" + UPDATED_CHASSIS_NAME);
+    }
+
+    @Test
+    @Transactional
+    public void getAllPortsByChassisNameIsInShouldWork() throws Exception {
+        // Initialize the database
+        portRepository.saveAndFlush(port);
+
+        // Get all the portList where chassisName in DEFAULT_CHASSIS_NAME or UPDATED_CHASSIS_NAME
+        defaultPortShouldBeFound("chassisName.in=" + DEFAULT_CHASSIS_NAME + "," + UPDATED_CHASSIS_NAME);
+
+        // Get all the portList where chassisName equals to UPDATED_CHASSIS_NAME
+        defaultPortShouldNotBeFound("chassisName.in=" + UPDATED_CHASSIS_NAME);
+    }
+
+    @Test
+    @Transactional
+    public void getAllPortsByChassisNameIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        portRepository.saveAndFlush(port);
+
+        // Get all the portList where chassisName is not null
+        defaultPortShouldBeFound("chassisName.specified=true");
+
+        // Get all the portList where chassisName is null
+        defaultPortShouldNotBeFound("chassisName.specified=false");
+    }
+
+    @Test
+    @Transactional
+    public void getAllPortsByLineCardNameIsEqualToSomething() throws Exception {
+        // Initialize the database
+        portRepository.saveAndFlush(port);
+
+        // Get all the portList where lineCardName equals to DEFAULT_LINE_CARD_NAME
+        defaultPortShouldBeFound("lineCardName.equals=" + DEFAULT_LINE_CARD_NAME);
+
+        // Get all the portList where lineCardName equals to UPDATED_LINE_CARD_NAME
+        defaultPortShouldNotBeFound("lineCardName.equals=" + UPDATED_LINE_CARD_NAME);
+    }
+
+    @Test
+    @Transactional
+    public void getAllPortsByLineCardNameIsInShouldWork() throws Exception {
+        // Initialize the database
+        portRepository.saveAndFlush(port);
+
+        // Get all the portList where lineCardName in DEFAULT_LINE_CARD_NAME or UPDATED_LINE_CARD_NAME
+        defaultPortShouldBeFound("lineCardName.in=" + DEFAULT_LINE_CARD_NAME + "," + UPDATED_LINE_CARD_NAME);
+
+        // Get all the portList where lineCardName equals to UPDATED_LINE_CARD_NAME
+        defaultPortShouldNotBeFound("lineCardName.in=" + UPDATED_LINE_CARD_NAME);
+    }
+
+    @Test
+    @Transactional
+    public void getAllPortsByLineCardNameIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        portRepository.saveAndFlush(port);
+
+        // Get all the portList where lineCardName is not null
+        defaultPortShouldBeFound("lineCardName.specified=true");
+
+        // Get all the portList where lineCardName is null
+        defaultPortShouldNotBeFound("lineCardName.specified=false");
+    }
+
+    @Test
+    @Transactional
     public void getAllPortsByLineCardIsEqualToSomething() throws Exception {
         // Initialize the database
         LineCard lineCard = LineCardResourceIntTest.createEntity(em);
@@ -288,7 +380,9 @@ public class PortResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(port.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
-            .andExpect(jsonPath("$.[*].info").value(hasItem(DEFAULT_INFO)));
+            .andExpect(jsonPath("$.[*].info").value(hasItem(DEFAULT_INFO)))
+            .andExpect(jsonPath("$.[*].chassisName").value(hasItem(DEFAULT_CHASSIS_NAME)))
+            .andExpect(jsonPath("$.[*].lineCardName").value(hasItem(DEFAULT_LINE_CARD_NAME)));
 
         // Check, that the count call also returns 1
         restPortMockMvc.perform(get("/api/ports/count?sort=id,desc&" + filter))
@@ -337,7 +431,9 @@ public class PortResourceIntTest {
         em.detach(updatedPort);
         updatedPort
             .name(UPDATED_NAME)
-            .info(UPDATED_INFO);
+            .info(UPDATED_INFO)
+            .chassisName(UPDATED_CHASSIS_NAME)
+            .lineCardName(UPDATED_LINE_CARD_NAME);
         PortDTO portDTO = portMapper.toDto(updatedPort);
 
         restPortMockMvc.perform(put("/api/ports")
@@ -351,6 +447,8 @@ public class PortResourceIntTest {
         Port testPort = portList.get(portList.size() - 1);
         assertThat(testPort.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testPort.getInfo()).isEqualTo(UPDATED_INFO);
+        assertThat(testPort.getChassisName()).isEqualTo(UPDATED_CHASSIS_NAME);
+        assertThat(testPort.getLineCardName()).isEqualTo(UPDATED_LINE_CARD_NAME);
     }
 
     @Test

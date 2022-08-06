@@ -13,6 +13,10 @@ public class PortDTO implements Serializable {
 
     private String info;
 
+    private String chassisName;
+
+    private String lineCardName;
+
 
     private Long lineCardId;
 
@@ -38,6 +42,22 @@ public class PortDTO implements Serializable {
 
     public void setInfo(String info) {
         this.info = info;
+    }
+
+    public String getChassisName() {
+        return chassisName;
+    }
+
+    public void setChassisName(String chassisName) {
+        this.chassisName = chassisName;
+    }
+
+    public String getLineCardName() {
+        return lineCardName;
+    }
+
+    public void setLineCardName(String lineCardName) {
+        this.lineCardName = lineCardName;
     }
 
     public Long getLineCardId() {
@@ -75,6 +95,8 @@ public class PortDTO implements Serializable {
             "id=" + getId() +
             ", name='" + getName() + "'" +
             ", info='" + getInfo() + "'" +
+            ", chassisName='" + getChassisName() + "'" +
+            ", lineCardName='" + getLineCardName() + "'" +
             ", lineCard=" + getLineCardId() +
             "}";
     }
