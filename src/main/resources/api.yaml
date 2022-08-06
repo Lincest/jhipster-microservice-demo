@@ -9,6 +9,7 @@ info:
         url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
 schemes:
     - "http"
+basePath: /api
 paths:
     /user/save:
         post:
@@ -31,6 +32,22 @@ paths:
                     schema:
                         type: object
                         $ref: "#/definitions/Response"
+                400:
+                    description: "operate down"
+                    schema:
+                        type: object
+                        $ref: "#/definitions/Response"
+        get:
+            operationId: getUser
+            produces:
+                - "application/json"
+            responses:
+                200:
+                    description: "get user lists"
+                    schema:
+                        type: array
+                        $ref: "#/definitions/Users"
+
 
 definitions:
     Response:
@@ -67,3 +84,8 @@ definitions:
                 type: string
             operatorNumber:
                 type: string
+
+    Users:
+        type: array
+        items:
+            $ref: "#/definitions/User"

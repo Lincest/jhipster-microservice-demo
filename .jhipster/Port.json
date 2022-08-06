@@ -1,0 +1,32 @@
+{
+    "name": "Port",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "info",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "lineCard",
+            "otherEntityRelationshipName": "port",
+            "relationshipName": "lineCard",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20220806133355",
+    "entityTableName": "port",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "MicroName",
+    "applications": "*",
+    "microserviceName": "MicroName"
+}

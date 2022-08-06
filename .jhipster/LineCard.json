@@ -1,0 +1,38 @@
+{
+    "name": "LineCard",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "info",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "port",
+            "otherEntityRelationshipName": "lineCard",
+            "relationshipName": "port"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "chassis",
+            "otherEntityRelationshipName": "lineCard",
+            "relationshipName": "chassis",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20220806133354",
+    "entityTableName": "line_card",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "MicroName",
+    "applications": "*",
+    "microserviceName": "MicroName"
+}

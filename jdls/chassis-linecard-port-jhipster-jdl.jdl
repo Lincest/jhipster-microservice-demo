@@ -1,0 +1,28 @@
+entity Chassis {
+	name String
+	info String
+}
+
+entity LineCard {
+	name String
+    info String
+}
+
+entity Port {
+	name String
+    info String
+}
+
+service * with serviceClass
+dto * with mapstruct
+filter * 
+paginate * with pagination
+
+relationship OneToMany {
+	Chassis to LineCard
+}
+
+relationship OneToMany {
+	LineCard to Port
+}
+

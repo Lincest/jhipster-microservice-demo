@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Port.
+    -->
+    <changeSet id="20220806133355-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="line_card_id"
+                                 baseTableName="port"
+                                 constraintName="fk_port_line_card_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="line_card"/>
+
+    </changeSet>
+</databaseChangeLog>
