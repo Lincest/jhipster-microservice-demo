@@ -1,0 +1,11 @@
+entity PortView {
+	name String
+    info String
+    chassisId Long
+    chassisName String
+    lineCardId Long
+   	lineCardName String
+}
+
+filter *
+paginate * with pagination

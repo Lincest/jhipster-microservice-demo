@@ -11,7 +11,10 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {LineCardMapper.class})
 public interface PortMapper extends EntityMapper<PortDTO, Port> {
 
+    // Port的lineCard的某些字段 对应 portDTO本身的什么字段
     @Mapping(source = "lineCard.id", target = "lineCardId")
+    @Mapping(source = "lineCard.name", target = "lineCardName")
+    @Mapping(source = "lineCard.chassis.name", target="chassisName")
     PortDTO toDto(Port port);
 
     @Mapping(source = "lineCardId", target = "lineCard")

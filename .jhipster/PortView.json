@@ -1,0 +1,40 @@
+{
+    "name": "PortView",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "info",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "chassisId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "chassisName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "lineCardId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "lineCardName",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20220806151655",
+    "entityTableName": "port_view",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "MicroName",
+    "applications": "*",
+    "microserviceName": "MicroName"
+}
