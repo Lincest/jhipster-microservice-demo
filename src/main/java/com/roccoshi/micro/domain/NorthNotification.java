@@ -19,12 +19,12 @@ import java.util.Objects;
 public class NorthNotification implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    
+
     @Column(name = "identifier", unique = true)
     private String identifier;
 
@@ -37,7 +37,7 @@ public class NorthNotification implements Serializable {
     @Column(name = "object_type")
     private String objectType;
 
-    @OneToMany(mappedBy = "notification")
+    @OneToMany(mappedBy = "notification", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<NorthNotificationEvents> events = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {

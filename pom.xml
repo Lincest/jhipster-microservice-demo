@@ -370,6 +370,12 @@
             <artifactId>woodstox-core</artifactId>
             <version>6.2.6</version>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.47</version>
+        </dependency>
+
     </dependencies>
 
     <build>

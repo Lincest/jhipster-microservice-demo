@@ -21,11 +21,17 @@ public class NorthNotificationEvents implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "event_time")
+    private String eventTime;
+
     @Column(name = "patch_id")
     private String patchId;
 
     @Column(name = "target_id")
     private String targetId;
+
+    @Column(name = "operation")
+    private String operation;
 
     @Column(name = "oper_state")
     private String operState;
@@ -44,6 +50,19 @@ public class NorthNotificationEvents implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getEventTime() {
+        return eventTime;
+    }
+
+    public NorthNotificationEvents eventTime(String eventTime) {
+        this.eventTime = eventTime;
+        return this;
+    }
+
+    public void setEventTime(String eventTime) {
+        this.eventTime = eventTime;
     }
 
     public String getPatchId() {
@@ -70,6 +89,19 @@ public class NorthNotificationEvents implements Serializable {
 
     public void setTargetId(String targetId) {
         this.targetId = targetId;
+    }
+
+    public String getOperation() {
+        return operation;
+    }
+
+    public NorthNotificationEvents operation(String operation) {
+        this.operation = operation;
+        return this;
+    }
+
+    public void setOperation(String operation) {
+        this.operation = operation;
     }
 
     public String getOperState() {
@@ -136,8 +168,10 @@ public class NorthNotificationEvents implements Serializable {
     public String toString() {
         return "NorthNotificationEvents{" +
             "id=" + getId() +
+            ", eventTime='" + getEventTime() + "'" +
             ", patchId='" + getPatchId() + "'" +
             ", targetId='" + getTargetId() + "'" +
+            ", operation='" + getOperation() + "'" +
             ", operState='" + getOperState() + "'" +
             ", currentState='" + getCurrentState() + "'" +
             "}";

@@ -40,11 +40,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = MicroNameApp.class)
 public class NorthNotificationEventsResourceIntTest {
 
+    private static final String DEFAULT_EVENT_TIME = "AAAAAAAAAA";
+    private static final String UPDATED_EVENT_TIME = "BBBBBBBBBB";
+
     private static final String DEFAULT_PATCH_ID = "AAAAAAAAAA";
     private static final String UPDATED_PATCH_ID = "BBBBBBBBBB";
 
     private static final String DEFAULT_TARGET_ID = "AAAAAAAAAA";
     private static final String UPDATED_TARGET_ID = "BBBBBBBBBB";
+
+    private static final String DEFAULT_OPERATION = "AAAAAAAAAA";
+    private static final String UPDATED_OPERATION = "BBBBBBBBBB";
 
     private static final String DEFAULT_OPER_STATE = "AAAAAAAAAA";
     private static final String UPDATED_OPER_STATE = "BBBBBBBBBB";
@@ -94,8 +100,10 @@ public class NorthNotificationEventsResourceIntTest {
      */
     public static NorthNotificationEvents createEntity(EntityManager em) {
         NorthNotificationEvents northNotificationEvents = new NorthNotificationEvents()
+            .eventTime(DEFAULT_EVENT_TIME)
             .patchId(DEFAULT_PATCH_ID)
             .targetId(DEFAULT_TARGET_ID)
+            .operation(DEFAULT_OPERATION)
             .operState(DEFAULT_OPER_STATE)
             .currentState(DEFAULT_CURRENT_STATE);
         return northNotificationEvents;
@@ -121,8 +129,10 @@ public class NorthNotificationEventsResourceIntTest {
         List<NorthNotificationEvents> northNotificationEventsList = northNotificationEventsRepository.findAll();
         assertThat(northNotificationEventsList).hasSize(databaseSizeBeforeCreate + 1);
         NorthNotificationEvents testNorthNotificationEvents = northNotificationEventsList.get(northNotificationEventsList.size() - 1);
+        assertThat(testNorthNotificationEvents.getEventTime()).isEqualTo(DEFAULT_EVENT_TIME);
         assertThat(testNorthNotificationEvents.getPatchId()).isEqualTo(DEFAULT_PATCH_ID);
         assertThat(testNorthNotificationEvents.getTargetId()).isEqualTo(DEFAULT_TARGET_ID);
+        assertThat(testNorthNotificationEvents.getOperation()).isEqualTo(DEFAULT_OPERATION);
         assertThat(testNorthNotificationEvents.getOperState()).isEqualTo(DEFAULT_OPER_STATE);
         assertThat(testNorthNotificationEvents.getCurrentState()).isEqualTo(DEFAULT_CURRENT_STATE);
     }
@@ -157,8 +167,10 @@ public class NorthNotificationEventsResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(northNotificationEvents.getId().intValue())))
+            .andExpect(jsonPath("$.[*].eventTime").value(hasItem(DEFAULT_EVENT_TIME.toString())))
             .andExpect(jsonPath("$.[*].patchId").value(hasItem(DEFAULT_PATCH_ID.toString())))
             .andExpect(jsonPath("$.[*].targetId").value(hasItem(DEFAULT_TARGET_ID.toString())))
+            .andExpect(jsonPath("$.[*].operation").value(hasItem(DEFAULT_OPERATION.toString())))
             .andExpect(jsonPath("$.[*].operState").value(hasItem(DEFAULT_OPER_STATE.toString())))
             .andExpect(jsonPath("$.[*].currentState").value(hasItem(DEFAULT_CURRENT_STATE.toString())));
     }
@@ -174,8 +186,10 @@ public class NorthNotificationEventsResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(northNotificationEvents.getId().intValue()))
+            .andExpect(jsonPath("$.eventTime").value(DEFAULT_EVENT_TIME.toString()))
             .andExpect(jsonPath("$.patchId").value(DEFAULT_PATCH_ID.toString()))
             .andExpect(jsonPath("$.targetId").value(DEFAULT_TARGET_ID.toString()))
+            .andExpect(jsonPath("$.operation").value(DEFAULT_OPERATION.toString()))
             .andExpect(jsonPath("$.operState").value(DEFAULT_OPER_STATE.toString()))
             .andExpect(jsonPath("$.currentState").value(DEFAULT_CURRENT_STATE.toString()));
     }
@@ -201,8 +215,10 @@ public class NorthNotificationEventsResourceIntTest {
         // Disconnect from session so that the updates on updatedNorthNotificationEvents are not directly saved in db
         em.detach(updatedNorthNotificationEvents);
         updatedNorthNotificationEvents
+            .eventTime(UPDATED_EVENT_TIME)
             .patchId(UPDATED_PATCH_ID)
             .targetId(UPDATED_TARGET_ID)
+            .operation(UPDATED_OPERATION)
             .operState(UPDATED_OPER_STATE)
             .currentState(UPDATED_CURRENT_STATE);
 
@@ -215,8 +231,10 @@ public class NorthNotificationEventsResourceIntTest {
         List<NorthNotificationEvents> northNotificationEventsList = northNotificationEventsRepository.findAll();
         assertThat(northNotificationEventsList).hasSize(databaseSizeBeforeUpdate);
         NorthNotificationEvents testNorthNotificationEvents = northNotificationEventsList.get(northNotificationEventsList.size() - 1);
+        assertThat(testNorthNotificationEvents.getEventTime()).isEqualTo(UPDATED_EVENT_TIME);
         assertThat(testNorthNotificationEvents.getPatchId()).isEqualTo(UPDATED_PATCH_ID);
         assertThat(testNorthNotificationEvents.getTargetId()).isEqualTo(UPDATED_TARGET_ID);
+        assertThat(testNorthNotificationEvents.getOperation()).isEqualTo(UPDATED_OPERATION);
         assertThat(testNorthNotificationEvents.getOperState()).isEqualTo(UPDATED_OPER_STATE);
         assertThat(testNorthNotificationEvents.getCurrentState()).isEqualTo(UPDATED_CURRENT_STATE);
     }

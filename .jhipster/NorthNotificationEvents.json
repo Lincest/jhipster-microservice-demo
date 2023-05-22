@@ -2,11 +2,19 @@
     "name": "NorthNotificationEvents",
     "fields": [
         {
+            "fieldName": "eventTime",
+            "fieldType": "String"
+        },
+        {
             "fieldName": "patchId",
             "fieldType": "String"
         },
         {
             "fieldName": "targetId",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "operation",
             "fieldType": "String"
         },
         {

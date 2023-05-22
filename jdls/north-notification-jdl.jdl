@@ -6,8 +6,10 @@ entity NorthNotification {
 }
 
 entity NorthNotificationEvents {
+    eventTime String
     patchId String
     targetId String
+    operation String
     operState String
     currentState String
 }
