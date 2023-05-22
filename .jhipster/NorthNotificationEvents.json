@@ -1,0 +1,40 @@
+{
+    "name": "NorthNotificationEvents",
+    "fields": [
+        {
+            "fieldName": "patchId",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "targetId",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "operState",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "currentState",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "northNotification",
+            "otherEntityRelationshipName": "events",
+            "relationshipName": "notification",
+            "otherEntityField": "identifier"
+        }
+    ],
+    "changelogDate": "20230522121748",
+    "entityTableName": "north_notification_events",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "MicroName",
+    "applications": "*",
+    "microserviceName": "MicroName"
+}

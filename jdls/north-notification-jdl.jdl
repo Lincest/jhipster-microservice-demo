@@ -1,0 +1,17 @@
+entity NorthNotification {
+	identifier String unique
+    encoding String
+    topic String
+    objectType String
+}
+
+entity NorthNotificationEvents {
+    patchId String
+    targetId String
+    operState String
+    currentState String
+}
+
+relationship OneToMany {
+	NorthNotification{events(identifier)} to NorthNotificationEvents{notification(identifier)}
+}

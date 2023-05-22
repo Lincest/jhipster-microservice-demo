@@ -1,0 +1,42 @@
+{
+    "name": "NorthNotification",
+    "fields": [
+        {
+            "fieldName": "identifier",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "unique"
+            ]
+        },
+        {
+            "fieldName": "encoding",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "topic",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "objectType",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "northNotificationEvents",
+            "otherEntityRelationshipName": "notification",
+            "relationshipName": "events"
+        }
+    ],
+    "changelogDate": "20230522121747",
+    "entityTableName": "north_notification",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "MicroName",
+    "applications": "*",
+    "microserviceName": "MicroName"
+}

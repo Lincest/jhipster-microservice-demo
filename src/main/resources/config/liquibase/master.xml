@@ -10,9 +10,12 @@
     <include file="config/liquibase/changelog/20220806133353_added_entity_Chassis.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20220806133354_added_entity_LineCard.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20220806133355_added_entity_Port.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20230522121747_added_entity_NorthNotification.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20230522121748_added_entity_NorthNotificationEvents.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20220806133354_added_entity_constraints_LineCard.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20220806133355_added_entity_constraints_Port.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20220806151655_added_entity_PortView.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20230522121748_added_entity_constraints_NorthNotificationEvents.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>
